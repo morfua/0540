@@ -16,15 +16,23 @@ let googleInput = document.getElementsByName("q")[0];
 let btnK = document.getElementsByName("btnK")[0];
 
 if (btnK !== undefined) {
-  googleInput.value = keyword;
+  let i = 0;
+  let timerId = setInterval(()=> {
+    googleInput.value += keyword[i];
+    i++;
+    if(i == keyword.length) {
+      clearInterval(timerId);
+    }
+  },1000)
+
   btnK.click();
 }else {
   for (let i = 0; i < links.length; i++) {
     if (links[i].href.includes("napli.ru")) {
-    let link = links[i];
-    console.log("Нашел строку " + links[i]);
-    link.click();
-    break;
+      let link = links[i];
+      console.log("Нашел строку " + links[i]);
+      link.click();
+      break;
     }
   }
 }
