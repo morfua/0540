@@ -7,7 +7,7 @@
 // @match        https://www.google.com/*
 // @match        https://napli.ru/*
 // @match        https://kiteuniverse.ru/*
-// @match        https://motoreforma.com/
+// @match        https://motoreforma.com/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // ==/UserScript==
