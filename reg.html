@@ -52,24 +52,31 @@
 		<h1 class="text-center my-5">Регистрация на сайте</h1>
 		<div class="container">
 			<div class="col-md-5 mx-auto">
-				<form action="php/reg_obr.php" method="POST">
+				<form onsubmit="sendForm(this); return false;">
 					<div class="input-group my-2">
 						<div class="input-group-prepend">
 							<div class="input-group-text"><i class="fa-solid fa-user-tie"></i></div>
 						</div>
-						<input type="text" class="form-control" placeholder="Имя" required name="name"/>
+						<input type="text" class="form-control" placeholder="Имя" required name="name" />
 					</div>
 					<div class="input-group my-2">
 						<div class="input-group-prepend">
 							<div class="input-group-text"><i class="fa-solid fa-user-tie"></i></div>
 						</div>
-						<input type="text" class="form-control" placeholder="Фамилия" required name="lastname"/>
+						<input
+							type="text"
+							class="form-control"
+							placeholder="Фамилия"
+							required
+							name="lastname"
+						/>
 					</div>
 					<div class="input-group my-2">
 						<div class="input-group-prepend">
 							<div class="input-group-text"><i class="fa-solid fa-envelope"></i></div>
 						</div>
-						<input type="email" class="form-control" placeholder="E-mail" required name="email"/>
+						<input type="email" class="form-control" placeholder="E-mail" required name="email" />
+						<p id="info"></p>
 					</div>
 					<div class="input-group my-2">
 						<div class="input-group-prepend">
@@ -103,6 +110,21 @@
 				</form>
 			</div>
 		</div>
+
+		<script>
+			async function sendForm(form) {
+				let response = await fetch("php/reg_obr.php", {
+					method: "POST",
+					body: new FormData(form),
+				});
+				let result = await response.text();
+				if (result == "ok") {
+					alert("Успешно зарегистрирован!");
+				} else {
+					info.innerText = "Такой пользователь уже существует.";
+				}
+			}
+		</script>
 
 		<script
 			src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
