@@ -20,6 +20,24 @@
 		.edit-btn:hover {
 			color: darkred;
 		}
+
+		.save-btn {
+			cursor: pointer;
+			color: blue;
+		}
+
+		.save-btn:hover {
+			color: darkblue;
+		}
+
+		.cancel-btn {
+			cursor: pointer;
+			color: green;
+		}
+
+		.cancel-btn:hover {
+			color: darkgreen;
+		}
 	</style>
 
 </head>
@@ -27,9 +45,17 @@
 <body>
 
 	<div class="container">
-		<p>Имя: <span><?php echo $_SESSION["name"]; ?></span><span class="edit-btn"> [Изменить]</span></p>
+		<p>Имя: <span><?php echo $_SESSION["name"]; ?></span>
+			<span class="edit-btn"> [Изменить]</span>
+			<span class="save-btn" hidden> [Сохранить]</span>
+			<span class="cancel-btn" hidden> [Отменить]</span>
+		</p>
 
-		<p>Фамилия: <span><?php echo $_SESSION["lastname"]; ?></span><span class="edit-btn"> [Изменить]</span></p>
+		<p>Фамилия: <span><?php echo $_SESSION["lastname"]; ?></span>
+			<span class="edit-btn"> [Изменить]</span>
+			<span class="save-btn" hidden> [Сохранить]</span>
+			<span class="cancel-btn" hidden> [Отменить]</span>
+		</p>
 
 		<p>E-mail: <?php echo $_SESSION["email"]; ?></p>
 
@@ -38,12 +64,21 @@
 
 	<script>
 		let edit_buttons = document.querySelectorAll(".edit-btn");
+		let save_buttons = document.querySelectorAll(".save-btn");
+		let cancel_buttons = document.querySelectorAll(".cancel-btn");
+
 
 		for (let i = 0; i < edit_buttons.length; i++) {
+			let inputValue = edit_buttons[i].previousElementSibling.innerText;
+
 			edit_buttons[i].addEventListener("click", () => {
-				let inputValue = edit_buttons[i].previousElementSibling.innerText;
 				edit_buttons[i].previousElementSibling.innerHTML = `<input type="text" value="${inputValue}">`;
+				save_buttons[i].hidden = false;
+				cancel_buttons[i].hidden = false;
+				edit_buttons[i].hidden = true;
 			});
+			
+
 		}
 	</script>
 
