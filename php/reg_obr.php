@@ -9,8 +9,8 @@ if ($mysqli == false) {
 
   $name = $_POST['name'];
   $lastname = $_POST['lastname'];
-  $email = $_POST['email'];
-  $pass = $_POST['pass'];
+  $email = trim(mb_strtolower($_POST['email']));
+  $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
   $result = $mysqli->query("SELECT * FROM `users` WHERE `email`='$email'");
 
